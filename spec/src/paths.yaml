@@ -1,0 +1,64 @@
+/v1/healthcheck:
+  get:
+    tags:
+      - internal
+    summary: Healthcheck
+    description: heatlcheck
+    operationId: healthcheck
+    responses:
+      '200':
+        description: successful operation
+
+/v1/users:
+  post:
+    tags:
+      - users
+    summary: Create user
+    description: Create a new user
+    operationId: createUser
+    requestBody:
+      description: Details for creating a user
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateUserRequest'
+      required: true
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/User'
+
+/v1/users/activate:
+  post:
+    tags:
+      - users
+    summary: Activate user
+    description: Activate a new user
+    operationId: activateUser
+    responses:
+      '201':
+        description: Created
+
+/v1/tokens:
+  post:
+    tags:
+      - users
+    summary: Create token
+    description: Create token for user
+    operationId: createToken
+    requestBody:
+      description: Details for creating a token
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/CreateTokenRequest'
+    responses:
+      '201':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/Token'

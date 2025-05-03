@@ -1,0 +1,2 @@
+CREATE DATABASE app;
+CREATE USER username WITH PASSWORD 'password';

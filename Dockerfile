@@ -10,7 +10,7 @@ COPY . .
 
 RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux make build
+RUN make build
 
 EXPOSE 3000
 

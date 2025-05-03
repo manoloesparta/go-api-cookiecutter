@@ -1,0 +1,7 @@
+.DS_Store
+*.out
+.vscode
+id_rsa.pub
+.env
+local/postgres/
+local/application.log

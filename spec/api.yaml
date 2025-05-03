@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: tbd
+  description: This is the REST API specification
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: users
+  - name: internal
+paths:
+  $ref: './src/paths.yaml'
+components:
+  schemas:
+    $ref: './src/schemas.yaml'
+  parameters:
+    $ref: './src/parameters.yaml'

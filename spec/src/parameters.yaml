@@ -1,0 +1,23 @@
+authToken:
+  name: Authorization
+  in: header
+  schema:
+    type: string
+
+pageNumber:
+  name: pageNumber
+  in: query
+  description: page of the list
+  required: false
+  schema:
+    type: integer
+    format: int64
+
+pageSize:
+  name: pageSize
+  in: query
+  description: size of page
+  required: false
+  schema:
+    type: integer
+    format: int64

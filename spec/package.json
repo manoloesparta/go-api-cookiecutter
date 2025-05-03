@@ -1,0 +1,13 @@
+{
+  "name": "go-api-cookiecutter",
+  "version": "1.0.0",
+  "description": "openapi spec for rest api",
+  "scripts": {
+    "build": "swagger-cli bundle api.yaml --outfile build/api.yaml --type yaml"
+  },
+  "keywords": [],
+  "author": "Manuel Esparza Guzman",
+  "dependencies": {
+    "swagger-cli": "^4.0.4"
+  }
+}
