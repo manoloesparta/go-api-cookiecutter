@@ -1,6 +1,6 @@
 # Cookiecutter for Go REST APIs
 
-This project serves as a starting point for building Go REST API applications. It is a file-sharing application where users own directories and files, and other users can request access to view or modify them.
+This project provides a robust foundation for building Go REST API applications. It serves as a template for creating, managing, and extending functionality for various use cases. The included example application demonstrates a simple post-it note management system, allowing users to create, update, delete, and retrieve notes with images. This example can be easily adapted to suit more complex scenarios, making it an ideal starting point for your next Go-based API project.
 
 ## Features
 
@@ -10,7 +10,6 @@ This project serves as a starting point for building Go REST API applications. I
 * PostgreSQL Integration
 * Database Migrations
 * Authentication
-* Permission-Based Authorization
 * File Upload Handling
 * Logging
 * Graceful Shutdown
@@ -89,6 +88,10 @@ To test the application locally, you need to configure access to an AWS bucket f
 2. Alternatively, if you prefer not to create the bucket manually, you can deploy the `dev` environment using Terraform. Once deployed, use the bucket name generated during the deployment process.
 
 This setup ensures the application has the necessary credentials and bucket information to perform file operations locally.
+
+### Logs
+
+The application generates logs that can be found in the `local/application.log` file. 
 
 ### Running Integration Tests
 
