@@ -9,7 +9,7 @@ This project provides a robust foundation for building Go REST API applications.
 * Configuration Management
 * PostgreSQL Integration
 * Database Migrations
-* Authentication
+* Authentication & Authorization
 * File Upload Handling
 * Logging
 * Graceful Shutdown
@@ -167,7 +167,7 @@ The initial infrastructure deployment will fail because no image is available in
 
 1. Publish the application image:
    ```bash
-   make publish
+   make publish env=<environment>
    ```
    You can specify the environment using the `ENV` variable (e.g., `make publish ENV=prod`).
 2. Retry the infrastructure deployment:

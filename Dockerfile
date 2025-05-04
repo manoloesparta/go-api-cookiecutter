@@ -12,7 +12,7 @@ RUN touch application.log
 
 RUN go mod download
 
-RUN make build
+RUN make api/build
 
 EXPOSE 3000
 
