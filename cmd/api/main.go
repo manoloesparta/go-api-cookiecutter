@@ -54,7 +54,7 @@ func main() {
 
 	flag.StringVar(&config.env, "env", env, "Environment (local|dev|prod)")
 	flag.StringVar(&config.port, "port", port, "API server port")
-	flag.StringVar(&config.bucketName, "images-bucket", bucketArn, "ARN of the bucket for storing images")
+	flag.StringVar(&config.bucketName, "images-bucket", bucketArn, "Name of the S3 bucket for storing images")
 	flag.StringVar(&config.db.url, "db-url", dbUrl, "db connection string")
 	flag.IntVar(&config.db.maxOpenConns, "db-max-open-conns", 25, "max open connections")
 	flag.IntVar(&config.db.maxIdleConns, "db-max-idle-conns", 25, "max idle connections")

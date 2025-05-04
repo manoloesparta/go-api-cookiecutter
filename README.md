@@ -1,6 +1,6 @@
 # Cookiecutter for Go REST APIs
 
-This project provides a robust foundation for building Go REST API applications. It serves as a template for creating, managing, and extending functionality for various use cases. The included example application demonstrates a simple post-it note management system, allowing users to create, update, delete, and retrieve notes with images. This example can be easily adapted to suit more complex scenarios, making it an ideal starting point for your next Go-based API project.
+This project provides a robust foundation for building Go REST API applications. It serves as a template for creating, managing, and extending functionality for various use cases. The included example application demonstrates a simple note management system, allowing users to create, update, delete, and retrieve notes with images. This example can be easily adapted to suit more complex scenarios, making it an ideal starting point for your next Go-based API project.
 
 ## Features
 
@@ -27,8 +27,10 @@ This project provides a robust foundation for building Go REST API applications.
 ## Project Structure
 
 The project is organized as follows:
-
-* `cmd/api`: Entry point for the HTTP router.
+* `cmd/api`: Contains the main entry point and HTTP router setup for the application.
+   * `main.go`: The primary entry point for initializing the application, configuring the router, and ensuring all dependencies are properly set up.
+   * `server.go`: Handles the configuration and initialization of the HTTP server with graceful shutdown.
+   * `routes.go`: Defines the API routes and their corresponding handlers, ensuring alignment with the OpenAPI specification.
 * `internal`: Core library for the API.
     * `data`: Handles database interactions.
     * `swagger`: Contains generated code based on the OpenAPI specification.
@@ -43,17 +45,17 @@ The project is organized as follows:
 
 To use this project, ensure you have the following installed and configured:
 
-1. **Go**: Version 1.18 or later.
-2. **PostgreSQL**: A running PostgreSQL instance for database operations.
+1. **Go**: Version 1.23 or later.
+2. **PostgreSQL**: A running PostgreSQL instance for database operations (not required for local development).
 3. **Docker**: For containerized local testing and deployment.
-4. **Docker Compose**: For orchestrating multi-container applications.
-5. **Python**: Version 3.7 or later for running integration tests.
-6. **Terraform**: Version 1.0 or later for infrastructure management.
-7. **AWS CLI**: Configured with credentials for deploying to AWS.
-8. **Node.js and npm**: For building the OpenAPI specification.
-9. **Make**: For running predefined build and deployment commands.
-10. **golang-migrate**: For managing database migrations.
-11. **jq**: For processing JSON data in scripts.
+4. **Python**: Version 3.7 or later for running integration tests.
+5. **Terraform**: Version 1.0 or later for infrastructure management.
+6. **AWS CLI**: Configured with credentials for deploying to AWS.
+7. **Node.js and npm**: For building the OpenAPI specification.
+8. **Make**: For running predefined build and deployment commands.
+9. **golang-migrate**: For managing database migrations.
+10. **jq**: For processing JSON data in scripts.
+11. **Swagger Codegen**: A tool for generating API clients and models from the OpenAPI specification.
 
 Ensure all dependencies are properly installed and accessible in your system's PATH.
 
@@ -73,6 +75,14 @@ To update the API specification, follow these steps:
    make codegen-api
    make codegen-tests
    ```
+
+### Important Notes for API Updates
+
+When making changes to the API, keep the following in mind:
+
+1. **Updating Paths**: If you add or modify API paths, ensure that the changes are manually reflected in the API router. This step is crucial to ensure the new or updated endpoints are properly registered and functional.
+
+2. **Adding Definitions and Parameters**: When introducing new definitions or parameters in the API specification, verify that the corresponding generated data types are correctly integrated into the application. Ensure these data types are properly handled for both incoming requests and outgoing responses.
 
 ## Testing Locally
 
@@ -145,6 +155,7 @@ The `backend` Terraform module is designed to be reusable across multiple enviro
 
 4. Deploy the infrastructure using Terraform:
    ```bash
+   terraform init
    terraform apply -var-file="env.tfvars"
    ```
 
@@ -163,3 +174,17 @@ The initial infrastructure deployment will fail because no image is available in
    ```bash
    terraform apply -var-file="env.tfvars"
    ```
+
+## Best Practices for Integrating with Web, Mobile, or Other Client Applications
+
+The API specification is a powerful tool for generating client libraries for virtually any platform. To maximize its utility, we recommend maintaining the specification in a dedicated repository and integrating it into your client projects using one of the following approaches:
+
+1. **Git Submodules**: This approach is cleaner and more efficient, as it allows you to reference the specification repository directly. Submodules enable you to fetch the latest version automatically during builds, ensuring your clients always stay up-to-date.
+
+2. **Git Subtree**: If the specification is stored in a private repository and your build process occurs on an external service (e.g., AWS Amplify) where granting repository access is challenging, using a subtree is a practical alternative. This method embeds a copy of the specification repository into your project, eliminating the need for external access during builds.
+
+Both methods have their advantages, so choose the one that best fits your workflow and infrastructure constraints.
+
+## Acknowledgements
+
+This architecture draws inspiration from the excellent book [Let's Go Further](https://lets-go-further.alexedwards.net/) by Alex Edwards.

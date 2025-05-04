@@ -26,21 +26,6 @@
     responses:
       '201':
         description: Created
-        content:
-          application/json:
-            schema:
-              $ref: './schemas.yaml#/User'
-
-/v1/users/activate:
-  post:
-    tags:
-      - users
-    summary: Activate user
-    description: Activate a new user
-    operationId: activateUser
-    responses:
-      '201':
-        description: Created
 
 /v1/tokens:
   post:
@@ -62,3 +47,7 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/Token'
+
+/v1/notes:
+
+/v1/notes/{noteId}:
