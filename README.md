@@ -72,8 +72,8 @@ To update the API specification, follow these steps:
    ```
 2. Update the API models and test clients:
    ```bash
-   make codegen-api
-   make codegen-tests
+   make codegen/models
+   make codegen/tests
    ```
 
 ### Important Notes for API Updates
@@ -119,7 +119,7 @@ make tests
 To reset your local database, run the following command:
 
 ```bash
-make reset
+make local/reset
 ```
 
 **Note**: Additionally, we recommend cleaning up any files uploaded to your S3 bucket. These files upload during local testing are located in a directory named `local`.
@@ -167,9 +167,9 @@ The initial infrastructure deployment will fail because no image is available in
 
 1. Publish the application image:
    ```bash
-   make publish env=<environment>
+   make api/publish env=<environment>
    ```
-   You can specify the environment using the `ENV` variable (e.g., `make publish ENV=prod`).
+   You can specify the environment using the `ENV` variable (e.g., `make api/publish ENV=prod`).
 2. Retry the infrastructure deployment:
    ```bash
    terraform apply -var-file="env.tfvars"
